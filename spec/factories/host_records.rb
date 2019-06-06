@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :host_record do
-    host { nil }
-    record { nil }
+    host
+    record
   end
 end

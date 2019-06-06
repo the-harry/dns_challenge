@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :host do
-    url { "MyString" }
+    sequence(:url) { |n| "foo#{n}bar.com" }
   end
 end
