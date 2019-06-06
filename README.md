@@ -1,24 +1,26 @@
-# README
+# DNS Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### About
 
-Things you may want to cover:
+* Ruby 2.6.3
+* Rails 5.2
+* Docker
 
-* Ruby version
+This API was created to manage DNS records.
 
-* System dependencies
+### Install
+Download the repo
+* `git clone git@github.com:matheusam/dns_challenge.git`
+cd to new created folder
+* `cd dns_challenge`
+Then build and run the container
+* docker-compose build && docker-compose up
+First time you build it you need to run
+* `bin/setup`
+In case you don't want seeds to be loaded just run this command to create databases and run migrations
+* `rails db:setup`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After this, the API will be available at localhost:80, if you want to access the container to run the tests you can may run
+* `docker-compose exec web bash`
+And finally
+* `rspec`
