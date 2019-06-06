@@ -74,3 +74,14 @@ Some possible returns
 * `status 200, total: 1, matches: { [id: 1, ip: 1.1.1.1]}, matches_hosts: { [host: foobar.com, total: 1] }`
 
 * `status: 412, error: 'No results found.'`
+
+Curl ex:
+* `curl --header "Content-Type: application/json" \
+--request POST \
+--data '{"page":"1"}' \
+http://localhost:80/api/v1/records/search`
+
+
+returns:
+
+* `{"total":1,"matches":[{"id":1,"ip":"1.1.1.1"}],"matches_hosts":[{"host":"lorem.com","total":1}]}`
