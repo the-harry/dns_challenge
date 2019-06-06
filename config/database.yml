@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres
+  port: 5432
+  username: <%= ENV['REGISTRY_MANAGER_DATABASE_USER'] %>
+  password: <%= ENV['REGISTRY_MANAGER_DATABASE_PASSWORD'] %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: registry_manager_development
+
+test:
+  <<: *default
+  database: registry_manager_test
+
+production:
+  <<: *default
+  database: registry_manager_production
