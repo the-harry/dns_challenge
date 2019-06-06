@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :record do
-    ip { "MyString" }
+    sequence(:ip) { |n| "#{n}.#{n}.#{n}.#{n}" }
   end
 end
