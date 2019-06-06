@@ -35,12 +35,12 @@ This API was created to manage DNS records.
 
 Above is listed all available end-points. We currently support two operations, **record creation** and **retrieve a record**.
 
-_*RECORD CREATION*_
+##### *RECORD CREATION*
 Send a POST request to `/api/v1/records` with and IPv4 address and an array of hosts(but you can also create a single record, just ensure that you send it as an array).
 In case of success it will return the id of the created record and `201 http` code(:created). If fails, it will return `412 http` code (:unauthorized) and an generic error message.
 e.g.
 
-* `post /api/v1/records/<params>`
+* `post /api/v1/records`
 
 * `params = { ip: '9.9.9.9', hosts: ['foo.com', 'bar.com, 'foobar.com'] }`
 
@@ -49,3 +49,28 @@ Possible returns
 * `status 201, record_id: 1`
 
 * `status: 412, error: 'Sorry, try again.'`
+
+##### *RECORD SEARCH*
+Send a POST request to `/api/v1/records/search` with params to make a search, acepted  params are, `:page`(required), `:included`(hosts to include on search) and `:excluded`(hosts to exclude on search).
+It will return the total number of matching DNS records(`:total`), an array of records containing id of record and ip. And other array with assosiated hostnames and number of matching DNS records for each of those.
+e.g.
+
+* `post /api/v1/records/search`
+
+* You can search only using page number
+* `params = { page: 1 }`
+
+* Or you can search only results that include
+* `params = { page: 1, included: ['foo.com'] }`
+
+* Same thing for exluded results
+* `params = { page: 1, excluded: ['bar.com, 'foobar.com'] }`
+
+* And you can even try both together
+* `params = { page: 1, included: ['foo.com'], excluded: ['bar.com, 'foobar.com'] }`
+
+Some possible returns
+
+* `status 200, total: 1, matches: { [id: 1, ip: 1.1.1.1]}, matches_hosts: { [host: foobar.com, total: 1] }`
+
+* `status: 412, error: 'No results found.'`
